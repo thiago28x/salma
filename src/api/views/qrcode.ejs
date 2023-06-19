@@ -5,17 +5,334 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WhatsApp QrCode</title>
+  
     <style>
-        div {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        
+        
+        header {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                background-color: #2a2a2a;
+                color: #fff;
+                padding: 1rem;
+                width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 70px;
+              }
+        
+          h1 {
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 700;
+          font-size: 40px;
+          text-align: center;
+          color: #5de2a8;}
+        
+        
+          .msgCard {
+           border-radius: 10px;
+          font-family: 'Montserrat', sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          text-align: left;
+          color: #5de2a8;
+          padding: 10px;
+          margin: 5px;
+          background-color: #2D2D2D;
+          display: flex;
+          align-items: left;
+          justify-content: left;
+          flex-direction: column;
+          width: fit-content;
         }
-    </style>
+        
+          body {
+            font-family: Montserrat, sans-serif;
+          background-color: #272727;
+          min-height: 100vh;
+          height: 100%;
+          margin: 0;
+          height: 900px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+          padding: 50px;
+        }
+        
+        
+        .container {
+           border-radius: 10px;
+          max-width: 500px;
+          padding-top: 0px;
+          background-color: #333;
+          width: 100%;
+          height: 500px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+           border: 3px solid #5de2a8;
+           margin: 10px;
+        }
+        
+        .contact-card {
+           border-radius: 10px;
+          padding: 5px;
+          background-color: #333;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+           border: 1px solid #5de2a81e;
+           margin: 3px;
+          width: fit-content;
+        
+        }
+        
+        .contact-number {
+          color: #fff;
+        }
+        
+        
+        #contact-list {
+           border-radius: 10px;
+          padding-top: 0px;
+          background-color: #3b3b3b;
+          width: 20%;
+          height: 95%;
+          display: flex;
+          align-items: left;
+          justify-content: center;
+          flex-direction: column;
+           border: 0px solid #5de2a8;
+           margin: 10px;
+           overflow: hidden;
+           transition: height 0.2s ease-out;
+           height: auto;
+          overflow-y: scroll;
+          min-width: 230px;
+        }
+        
+        
+        #message-list-list {
+           border-radius: 10px;
+          padding-top: 0px;
+          background-color: #3b3b3b;
+          width: 80%;
+          height: 95%;
+          display: flex;
+          align-items: right;
+          justify-content: center;
+          flex-direction: column;
+           border: 0px solid #5de2a8;
+           margin: 10px;
+           overflow: hidden;
+           transition: height 0.2s ease-out;
+           height: auto;
+          overflow-y: scroll;
+        }
+        
+        
+        #chat-container {
+           border-radius: 10px;
+          background-color: #212121;
+          width: 80%;
+          height: 80%;
+          display: flex;
+          align-items: left;
+          justify-content: space-between;
+          flex-direction: row;
+           border: 0px solid #5de2a8;
+           margin: 10px;
+           overflow: hidden;
+           transition: height 0.2s ease-out;
+        }
+        
+        
+        
+        
+        input[type="email"],
+        input[type="text"] {
+        width: 250px;
+        height: 30px;
+        margin: 5px ;
+        padding: 10px;
+        text-align: left;
+        border: none;
+        border-radius: 5px;
+        background-color: #ffffff;
+        font-size: 18px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        
+        button {
+        width: 250px;
+        height: 50px;
+        margin: 10px;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #5de2a8;
+        color: #fff;
+        font-size: 18px;
+        font-weight: 700;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        height: 40px;
+        }
+        
+        
+        #test-btn {
+        background-color: #336ed4;
+        }
+        
+        
+        img { width: 250px; height: 250px; margin: 10px 0; background-color: #fff; border-radius: 5px; padding: 5px; }
+        
+        footer {
+        background-color: #0e3d91;
+        color: #fff;
+        width: 100%;
+        height: 70px;
+        display: flex;
+        align-items: left;
+        flex-direction: column;
+        justify-content: left;
+        position: fixed;
+        bottom: 0;
+        padding: 20px;
+        }
+        
+        a {
+          color: #fff;
+          text-decoration: none;
+          margin-right: 10px;}
+        
+        
+        #image-qr-code {
+        
+        height: 200px !important;
+        width: 200px !important;
+        
+        }
+        
+        table {
+          color: white;
+          min-height: 200px !important;
+        min-width: 200px;
+        }
+        
+        
+         
+        
+        
+        
+        
+        
+        footer a, footer p {
+            font-family: Montserrat;
+          }
+        
+          #footer-div {
+            margin: 20px;
+          }
+        
+          .collapsed {
+          height: 0 !important;
+          overflow: hidden;
+          transition: height 0.2s ease-out;
+        }
+        
+        
+        #conversation tr {
+          display: flex;
+          flex-direction: column;
+        }
+        
+        
+        
+        
+        #conversation {
+          color: white;
+          min-height: 200px !important;
+        min-width: 200px;
+        display: flex;
+          flex-direction: column;
+         width: 100%;
+        
+        }
+        
+        
+        #conversation td {
+          background-color: #2d2d2d;
+          border-radius: 10px;
+          box-shadow: 0 3px 6px rgba(102, 66, 188, 0.16);
+          color: #fff;
+          padding: 10px;
+          margin-bottom: 10px;
+          display: table-cell !important;
+          width: auto !important;
+          min-width: 20px !important;
+        }
+        
+        
+        #conversation tr td {
+          width: fit-content !important;
+          min-width: 20px !important;
+        }
+        
+        #message-list {
+          height: 100%; /* set the height of the message list */
+          overflow-y: scroll; /* make the message list vertically scrollable */
+         width: 95%;
+        
+        }
+        
+        
+        
+        
+        .sidebar {
+          width: 200px;
+          height: 100vh;
+          background-color: #333;
+          position: fixed;
+          left: 0;
+          top: 0;
+          padding-top: 20px;
+        }
+        
+        .sidebar ul {
+          list-style-type: none;
+          margin: 0;
+          padding: 0;
+        }
+        
+        .sidebar li {
+          margin-bottom: 10px;
+        }
+        
+        .sidebar li a {
+          display: block;
+          color: #fff;
+          text-decoration: none;
+          padding: 10px;
+        }
+        
+        </style>
+  
+  
 </head>
 <body>
-    <h1> Scan Code Below Using WhatsApp App<h1>
             <div class="container">
+                <h1> Zaploop V2<h1>
+
                 <img src="<%= qrcode %>" alt="" id="qrcode_box" />
             </div>
 </body>

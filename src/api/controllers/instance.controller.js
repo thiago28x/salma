@@ -140,3 +140,46 @@ exports.list = async (req, res) => {
         data: data,
     })
 }
+
+
+
+//thiago new start function
+
+
+exports.start = async (req, res) => {
+
+    console.log('starting qr code new session')
+    try {
+      const key = req.query.key;
+      const webhook = !req.query.webhook ? false : req.query.webhook;
+      const webhookUrl = !req.query.webhookUrl ? null : req.query.webhookUrl;
+      const appUrl = config.appUrl || req.protocol + '://' + req.headers.host;
+      const instance = new WhatsAppInstance(key, webhook, webhookUrl);
+      const data = await instance.init();
+  
+      // Generate and store the QR code as base64
+      const qrCodeBase64 = await instance.instance.qrCodeBase64();
+  
+      WhatsAppInstances[data.key] = instance;
+  
+      res.json({
+        error: false,
+        message: 'Initializing successfully',
+        key: data.key,
+        webhook: {
+          enabled: webhook,
+          webhookUrl: webhookUrl,
+        },
+        qrcode: {
+          url: appUrl + '/instance/qr?key=' + data.key,
+          base64: qrCodeBase64,
+        },
+        browser: config.browser,
+      });
+    } catch (error) {
+      res.status(500).json({
+        error: true,
+        message: 'Failed to initialize the instance',
+      });
+    }
+  };

@@ -17,7 +17,7 @@ exports.handler = handler
 
 exports.notFound = (req, res, next) => {
     const err = new APIError({
-        message: 'Not found',
+        message: 'Not found - não encontrado',
         status: 404,
     })
     return handler(err, req, res)

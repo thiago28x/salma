@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhatsApp Instance</title>
+</head>
+<body>
+  <button id="startButton">Start</button>
+  <img id="qrCodeImage" src="" alt="QR Code" width="200px">
+
+  <script>
+    const startButton = document.getElementById('startButton');
+    const qrCodeImage = document.getElementById('qrCodeImage');
+
+    startButton.addEventListener('click', async () => {
+      // Call the init function
+      const key = encodeURIComponent('zaploop');
+      const webhookUrl = encodeURIComponent('https://webhook.site/1da3235');
+      const initResponse = await fetch(`http://66.94.98.174:3333/instance/init?webhook=true&key=${key}&token=123&webhookUrl=${webhookUrl}`);
+      const initData = await initResponse.json();
+
+      // Call the qrbase64 function
+      const qrBase64Response = await fetch('http://66.94.98.174:3333/instance/qrbase64?key=teste');
+      const qrBase64Data = await qrBase64Response.json();
+
+      // Set the QR code image source to the base64 data
+      qrCodeImage.src = qrBase64Data.qrcode;
+    });
+  </script>
+</body>
+</html>
